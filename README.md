@@ -1,6 +1,6 @@
 # 🌟 Muhammad Hassaan - Full-Stack Developer Portfolio
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel&logoColor=white)](https://hassaan-portfolio.vercel.app)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel&logoColor=white)](https://hassaan-portfolio-lyart.vercel.app)
 [![React](https://img.shields.io/badge/React-18.3-blue?style=for-the-badge&logo=react&logoColor=cyan)](https://reactjs.org/)
 [![Express.js](https://img.shields.io/badge/Express-4.19-lightgrey?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-Database-emerald?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
@@ -10,9 +10,17 @@ Welcome to the GitHub repository of my professional portfolio. This is a product
 
 ---
 
+## 🌐 Live Portfolio Website
+
+Click the button below to visit the live deployed website:
+
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20Portfolio-blueviolet?style=for-the-badge&logo=vercel&logoColor=white)](https://hassaan-portfolio-lyart.vercel.app)
+
+---
+
 ## 🚀 Live Links
 
-- **🔗 Live Portfolio URL:** [https://hassaan-portfolio.vercel.app](https://hassaan-portfolio.vercel.app)
+- **🔗 Live Portfolio URL:** [https://hassaan-portfolio-lyart.vercel.app](https://hassaan-portfolio-lyart.vercel.app)
 - **📄 Download Resume:** [Muhammad_Hassaan_Resume.pdf](file:///public/assets/Muhammad_Hassaan_Resume.pdf)
 
 ---
