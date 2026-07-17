@@ -32,3 +32,6 @@ Desktop.ini
 
 # Vercel files
 .vercel
+
+.vercel
+.env*

@@ -113,7 +113,7 @@ VALUES
   ARRAY['React.js', 'Node.js', 'Supabase'], 
   ARRAY['Role-based access control', 'Payroll generation', 'Interactive analytics dashboard'], 
   'https://u2-collective-portal-hqk8.vercel.app', 
-  'https://github.com/mhassaan/u2-collective-hr', 
+  'https://github.com/hassaanashfaq51/u2-collective-portal', 
   'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
   '2026-07-11 00:00:00+00'
 );
