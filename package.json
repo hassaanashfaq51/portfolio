@@ -1,14 +1,29 @@
 {
-  "name": "hassaan-portfolio-root",
+  "name": "frontend",
+  "private": true,
   "version": "1.0.0",
-  "description": "Muhammad Hassaan's Full-Stack Developer Portfolio Workspace Root",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "install-all": "npm install && npm install --prefix backend && npm install --prefix frontend",
-    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
-    "build": "npm run build --prefix backend && npm run build --prefix frontend"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "echo 'No lint script'",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "@supabase/supabase-js": "^2.43.4",
+    "canvas-confetti": "^1.9.3",
+    "framer-motion": "^11.2.10",
+    "lucide-react": "^0.395.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.11"
   }
 }
