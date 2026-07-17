@@ -1,31 +1,5 @@
 import { supabase, isSupabaseConfigured } from '../config/supabase.js';
-
-// Helper to check admin authorization
-const verifyAdmin = async (req) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) return false;
-
-  const token = authHeader.split(' ')[1];
-  if (!token) return false;
-
-  // Local static bypass token
-  if (token === 'fallback_admin_token' || token === 'portfolio_admin_2026') {
-    return true;
-  }
-
-  // Supabase auth token verification
-  if (isSupabaseConfigured && supabase) {
-    try {
-      const { data: { user }, error } = await supabase.auth.getUser(token);
-      if (error || !user) return false;
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  return false;
-};
+import { verifyAdmin } from '../utils/auth.js';
 
 // 1. Get all projects
 export const getProjects = async (req, res) => {

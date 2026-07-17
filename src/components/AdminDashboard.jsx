@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Plus, Trash2, Mail, Briefcase, LogOut, Loader, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { supabase, isSupabaseConfigured } from '../utils/supabaseClient';
 
 const AdminDashboard = ({ isOpen, onClose, onAuthChange, projects, onRefreshProjects }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -85,35 +84,27 @@ const AdminDashboard = ({ isOpen, onClose, onAuthChange, projects, onRefreshProj
     setAuthError('');
     setLoading(true);
 
-    if (isSupabaseConfigured && supabase) {
-      // Supabase Login
-      try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password
-        });
-        if (error) throw error;
-        
-        localStorage.setItem('admin_token', data.session.access_token);
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ password: passcode })
+      });
+      const data = await response.json();
+      if (response.ok && data.token) {
+        localStorage.setItem('admin_token', data.token);
         setIsLoggedIn(true);
         onAuthChange(true);
-      } catch (err) {
-        setAuthError(err.message || 'Authentication failed');
-      } finally {
-        setLoading(false);
+      } else {
+        setAuthError('Invalid credentials.');
       }
-    } else {
-      // Fallback local secret passcode
-      setTimeout(() => {
-        if (passcode === 'admin' || passcode === 'portfolio_admin_2026') {
-          localStorage.setItem('admin_token', 'fallback_admin_token');
-          setIsLoggedIn(true);
-          onAuthChange(true);
-        } else {
-          setAuthError('Invalid passcode. Use passcode: admin');
-        }
-        setLoading(false);
-      }, 500);
+    } catch (err) {
+      console.error(err);
+      setAuthError('Invalid credentials.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -261,53 +252,21 @@ const AdminDashboard = ({ isOpen, onClose, onAuthChange, projects, onRefreshProj
               Sign In to Dashboard
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 text-center mb-6">
-              {isSupabaseConfigured 
-                ? 'Authenticate using your Supabase developer credentials.' 
-                : 'Demo Mode: Supabase not configured. Access dashboard using fallback password.'}
+              Please enter your administrative password to access the console.
             </p>
 
             <form onSubmit={handleLogin} className="space-y-4">
-              {isSupabaseConfigured ? (
-                <>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Email</label>
-                    <input 
-                      type="email" 
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      placeholder="admin@hassaan.dev"
-                      className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Password</label>
-                    <input 
-                      type="password" 
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      placeholder="••••••••"
-                      className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
-                    />
-                  </div>
-                </>
-              ) : (
-                <div>
-                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Passcode</label>
-                  <input 
-                    type="password" 
-                    value={passcode}
-                    onChange={(e) => setPasscode(e.target.value)}
-                    required
-                    placeholder="Enter admin passcode"
-                    className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
-                  />
-                  <span className="block mt-1 text-[10px] text-emerald-500">
-                    💡 Tip: Enter 'admin' or 'portfolio_admin_2026'
-                  </span>
-                </div>
-              )}
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Password</label>
+                <input 
+                  type="password" 
+                  value={passcode}
+                  onChange={(e) => setPasscode(e.target.value)}
+                  required
+                  placeholder="••••••••"
+                  className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                />
+              </div>
 
               {authError && (
                 <div className="text-xs text-red-500 font-medium bg-red-500/10 p-2.5 rounded-xl border border-red-500/20 text-center">
