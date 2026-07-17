@@ -20,9 +20,9 @@ const KNOWLEDGE_BASE = {
 - Version Control & Tools: Git, GitHub`,
   
   projects: `Muhammad Hassaan has built several high-quality projects, including:
-1. **U2 Collective HR Management Portal**: A full-stack HR and employee management portal featuring payroll generation, interactive analytics dashboards, and role-based access control. Technologies: React.js, Node.js, Supabase. (Live: https://u2-collective-portal-hqk8.vercel.app | GitHub: https://github.com/mhassaan/u2-collective-hr)
-2. **Task Manager Mobile Application**: An offline-first mobile scheduling application featuring progress tracking charts, local push notifications, and SQLite database persistence. Technologies: Flutter, Dart, SQLite. (GitHub: https://github.com/mhassaan/flutter-taskmanager)
-3. **Ecommerce Websites**: A high-performance e-commerce platform offering an interactive shopping cart, Stripe payment API integration, product filters, and catalog search. Technologies: React.js, Tailwind CSS, Node.js, Express.js. (Live: https://shop.hassaan.dev | GitHub: https://github.com/mhassaan/ecommerce-platform)`,
+1. **U2 Collective HR Management Portal**: A full-stack HR and employee management portal featuring payroll generation, interactive analytics dashboards, and role-based access control. Technologies: React.js, Node.js, Supabase. (Live: https://u2-collective-portal-hqk8.vercel.app | GitHub: https://github.com/hassaanashfaq51/u2-collective-portal)
+2. **Task Manager Mobile Application**: An offline-first mobile scheduling application featuring progress tracking charts, local push notifications, and SQLite database persistence. Technologies: Flutter, Dart, SQLite. (GitHub: https://github.com/hassaanashfaq51/flutter-taskmanager)
+3. **Ecommerce Websites**: A high-performance e-commerce platform offering an interactive shopping cart, Stripe payment API integration, product filters, and catalog search. Technologies: React.js, Tailwind CSS, Node.js, Express.js. (Live: https://shop.hassaan.dev | GitHub: https://github.com/hassaanashfaq51/ecommerce-platform)`,
   
   experience: `Muhammad Hassaan's development journey consists of four key phases:
 - **Phase 01: Started software development journey**: Began exploring software engineering paradigms, mastering programming languages, data structures, OOP principles, and basic algorithm design.

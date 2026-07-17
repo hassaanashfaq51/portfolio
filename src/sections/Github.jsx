@@ -21,12 +21,12 @@ const Github = () => {
   const fallbackRepos = [
     {
       id: 1,
-      name: 'u2-collective-hr',
+      name: 'u2-collective-portal',
       description: 'Employee management portal designed to manage operations, payrolls, administrative tasks, and staff permissions.',
       stargazers_count: 8,
       forks_count: 3,
       language: 'JavaScript',
-      html_url: 'https://github.com/hassaanashfaq51/u2-collective-hr'
+      html_url: 'https://github.com/hassaanashfaq51/u2-collective-portal'
     },
     {
       id: 2,
