@@ -1,11 +1,34 @@
+# Dependency directories
 node_modules/
+jspm_packages/
+
+# Build outputs
 dist/
+tmp/
+out/
 build/
+.temp/
+
+# Environment files
 .env
 .env.local
-.env.production
-*.log
-.DS_Store
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE configurations
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
 Thumbs.db
-uploads/
+ehthumbs.db
+Desktop.ini
+
+# Vercel files
 .vercel
