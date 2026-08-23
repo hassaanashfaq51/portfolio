@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Trash2, Edit } from 'lucide-react';
 import { buttonHover, projectCardHover, imageHover, tagHover, fadeUp } from '../utils/animations';
@@ -9,7 +9,8 @@ const projectCardVariants = {
   hover: projectCardHover.hover
 };
 
-const ProjectCard = ({ project, isAdmin, onEdit, onDelete }) => {
+const ProjectCard = ({ project, isAdmin, onEdit, onDelete, onViewDetails }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
   if (!project) return null;
   const { id, title, description, technologies, features, live_url, github_url, image_url } = project;
 
@@ -51,12 +52,20 @@ const ProjectCard = ({ project, isAdmin, onEdit, onDelete }) => {
       )}
 
       {/* Project Banner Image */}
-      <div className="h-48 sm:h-52 w-full overflow-hidden relative">
+      <div className="h-48 sm:h-52 w-full overflow-hidden relative bg-slate-200 dark:bg-slate-800">
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 animate-pulse" />
+        )}
         <motion.img 
           variants={imageHover}
           src={image_url || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'} 
           alt={title} 
-          className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          width="600"
+          height="350"
+          onLoad={() => setImageLoaded(true)}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         {/* Soft overlay appearing on hover */}
         <motion.div 
@@ -88,42 +97,13 @@ const ProjectCard = ({ project, isAdmin, onEdit, onDelete }) => {
             {title}
           </h3>
           
-          <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-3 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">
             {description}
           </p>
-
-          {/* Key Features */}
-          {featList && featList.length > 0 && (
-            <div className="mb-4 sm:mb-5">
-              <h5 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Key Highlights</h5>
-              <ul className="text-xs space-y-1.5 text-slate-600 dark:text-slate-400">
-                {featList.slice(0, 3).map((feat, index) => (
-                  <li key={index} className="flex items-center space-x-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400" />
-                    <span className="truncate">{feat}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
 
         {/* Action Link Buttons */}
-        <div className="flex space-x-3 mt-4 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
-          {live_url && (
-            <motion.a 
-              variants={buttonHover}
-              whileHover="hover"
-              whileTap="tap"
-              href={live_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 sm:px-4 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-95 shadow-md shadow-indigo-500/15 cursor-pointer"
-            >
-              <ExternalLink size={13} />
-              <span>Live Demo</span>
-            </motion.a>
-          )}
+        <div className="flex flex-wrap gap-2.5 mt-4 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
           {github_url && (
             <motion.a 
               variants={buttonHover}
@@ -132,12 +112,21 @@ const ProjectCard = ({ project, isAdmin, onEdit, onDelete }) => {
               href={github_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 sm:px-4 rounded-xl text-xs font-bold border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 cursor-pointer bg-transparent hover:bg-slate-100/30"
+              className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 cursor-pointer bg-transparent hover:bg-slate-100/30"
             >
               <Github size={13} />
               <span>GitHub</span>
             </motion.a>
           )}
+          <motion.button 
+            variants={buttonHover}
+            whileHover="hover"
+            whileTap="tap"
+            onClick={() => onViewDetails(project)}
+            className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15 cursor-pointer"
+          >
+            <span>View Details</span>
+          </motion.button>
         </div>
       </div>
     </motion.div>

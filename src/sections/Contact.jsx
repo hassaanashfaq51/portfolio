@@ -183,7 +183,7 @@ const Contact = () => {
   const contactDetails = [
     { label: 'Email', value: 'hassanashfaq51@gmail.com', href: 'mailto:hassanashfaq51@gmail.com', icon: GmailIcon },
     { label: 'GitHub', value: 'github.com/hassaanashfaq51', href: 'https://github.com/hassaanashfaq51', icon: GithubIcon },
-    { label: 'LinkedIn', value: 'linkedin.com/in/m-hassaan-57845508', href: 'https://linkedin.com/in/m-hassaan-57845508', icon: LinkedinIcon },
+    { label: 'LinkedIn', value: 'linkedin.com/in/m-hassaan-578455408', href: 'https://www.linkedin.com/in/m-hassaan-578455408', icon: LinkedinIcon },
     { label: 'WhatsApp', value: '+92 311 6647440', href: 'https://wa.me/923116647440', icon: WhatsappIcon },
   ];
 
@@ -348,7 +348,7 @@ const Contact = () => {
                           onChange={(e) => setName(e.target.value)}
                           required
                           placeholder="John Doe"
-                          className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                          className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                         />
                       </div>
                       <div>
@@ -359,7 +359,7 @@ const Contact = () => {
                           onChange={(e) => setEmail(e.target.value)}
                           required
                           placeholder="john@example.com"
-                          className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                          className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                         />
                       </div>
                     </div>
@@ -372,7 +372,7 @@ const Contact = () => {
                         required
                         rows="5"
                         placeholder="Hi Hassaan, I would like to collaborate on..."
-                        className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                        className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                       />
                     </div>
 
@@ -432,7 +432,7 @@ const Contact = () => {
                           onChange={(e) => setConsName(e.target.value)}
                           required
                           placeholder="John Doe"
-                          className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                          className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                         />
                       </div>
                       <div>
@@ -443,7 +443,7 @@ const Contact = () => {
                           onChange={(e) => setConsEmail(e.target.value)}
                           required
                           placeholder="john@example.com"
-                          className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                          className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                         />
                       </div>
                     </div>
@@ -456,7 +456,7 @@ const Contact = () => {
                           value={consPhone}
                           onChange={(e) => setConsPhone(e.target.value)}
                           placeholder="+92 311 6647440"
-                          className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                          className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                         />
                       </div>
                       <div>
@@ -466,7 +466,7 @@ const Contact = () => {
                           value={consSubject}
                           onChange={(e) => setConsSubject(e.target.value)}
                           placeholder="e.g., E-commerce App development"
-                          className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                          className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                         />
                       </div>
                     </div>
@@ -479,7 +479,7 @@ const Contact = () => {
                         required
                         rows="4"
                         placeholder="Provide details about what you want to construct, technical preferences, timeline, and goals..."
-                        className="w-full text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                        className="w-full text-base md:text-sm p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
                       />
                     </div>
 

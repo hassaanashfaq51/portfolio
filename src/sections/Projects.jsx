@@ -4,7 +4,7 @@ import ProjectCard from '../components/ProjectCard';
 import { FolderGit2, Loader, AlertTriangle } from 'lucide-react';
 import { sectionReveal, titleReveal, subtitleReveal, staggerContainer } from '../utils/animations';
 
-const Projects = ({ projects, loading, error, isAdmin, onEdit, onDelete }) => {
+const Projects = ({ projects, loading, error, isAdmin, onEdit, onDelete, onViewDetails }) => {
   const [filter, setFilter] = useState('All');
   const [filteredProjects, setFilteredProjects] = useState([]);
 
@@ -111,6 +111,7 @@ const Projects = ({ projects, loading, error, isAdmin, onEdit, onDelete }) => {
                   isAdmin={isAdmin}
                   onEdit={onEdit}
                   onDelete={onDelete}
+                  onViewDetails={onViewDetails}
                 />
               ))}
             </AnimatePresence>

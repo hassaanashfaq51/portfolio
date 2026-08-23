@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   // High performance compositor-thread coordinate values
   const cursorX = useMotionValue(-100);
@@ -15,6 +16,19 @@ const Cursor = () => {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    const checkTouch = () => {
+      return (
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia('(pointer: coarse)').matches
+      );
+    };
+    setIsTouchDevice(checkTouch());
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
+
     const handleMouseMove = (e) => {
       if (!isVisible) setIsVisible(true);
       cursorX.set(e.clientX);
@@ -54,9 +68,9 @@ const Cursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [isVisible, cursorX, cursorY]);
+  }, [isVisible, cursorX, cursorY, isTouchDevice]);
 
-  if (!isVisible) return null;
+  if (isTouchDevice || !isVisible) return null;
 
   return (
     <>

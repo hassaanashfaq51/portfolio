@@ -242,7 +242,7 @@ const ChatbotDrawer = ({ isOpen, onClose }) => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ask me about skills, projects, experience..."
-                  className="w-full text-xs sm:text-sm p-3.5 pr-10 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 dark:focus:border-cyan-500 focus:ring-1 focus:ring-indigo-500/20 dark:focus:ring-cyan-500/20 font-medium transition-all duration-200"
+                  className="w-full text-base md:text-sm p-3.5 pr-10 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 dark:focus:border-cyan-500 focus:ring-1 focus:ring-indigo-500/20 dark:focus:ring-cyan-500/20 font-medium transition-all duration-200"
                 />
                 <Sparkles size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 pointer-events-none" />
               </div>

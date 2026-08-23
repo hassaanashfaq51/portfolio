@@ -20,9 +20,11 @@ const KNOWLEDGE_BASE = {
 - Version Control & Tools: Git, GitHub`,
   
   projects: `Muhammad Hassaan has built several high-quality projects, including:
-1. **U2 Collective HR Management Portal**: A full-stack HR and employee management portal featuring payroll generation, interactive analytics dashboards, and role-based access control. Technologies: React.js, Node.js, Supabase. (Live: https://u2-collective-portal-hqk8.vercel.app | GitHub: https://github.com/hassaanashfaq51/u2-collective-portal)
-2. **Task Manager Mobile Application**: An offline-first mobile scheduling application featuring progress tracking charts, local push notifications, and SQLite database persistence. Technologies: Flutter, Dart, SQLite. (GitHub: https://github.com/hassaanashfaq51/flutter-taskmanager)
-3. **Ecommerce Websites**: A high-performance e-commerce platform offering an interactive shopping cart, Stripe payment API integration, product filters, and catalog search. Technologies: React.js, Tailwind CSS, Node.js, Express.js. (Live: https://shop.hassaan.dev | GitHub: https://github.com/hassaanashfaq51/ecommerce-platform)`,
+1. **U2 Collective HR Portal**: An employee-focused HR management portal for managing employee records, attendance, leave, documents, and workplace information through a modern web interface. Technologies: React.js, Node.js, Supabase, JavaScript. (GitHub: https://github.com/hassaanashfaq51/u2-collective-portal)
+2. **TaskPilot — Modern Productivity Web App**: A modern productivity web app for organizing tasks, priorities, deadlines, progress, and daily workflow through a responsive interface. Technologies: HTML5, CSS3, JavaScript, Local Storage. (GitHub: https://github.com/hassaanashfaq51/Task-pilot)
+3. **Database Integration — User Management API**: A database-integrated REST API for managing user records with CRUD operations, validation, persistent storage, and centralized error handling. Technologies: Node.js, Express.js, MongoDB, Mongoose. (GitHub: https://github.com/hassaanashfaq51/decodelab-task3)
+4. **Backend API Development**: A modular RESTful backend API built with Node.js and Express.js featuring structured routes, CRUD operations, validation, and error handling. Technologies: Node.js, Express.js, REST API, Postman. (GitHub: https://github.com/hassaanashfaq51/decodelab-task2)
+5. **TaskFlow — Modern Task Management Landing Page**: A responsive and mobile-first frontend interface focused on clean layouts, modern styling, and a smooth user experience across different screen sizes. Technologies: HTML5, CSS3, JavaScript (Vanilla), CSS Grid. (GitHub: https://github.com/hassaanashfaq51/decodelab-task1)`,
   
   experience: `Muhammad Hassaan's development journey consists of four key phases:
 - **Phase 01: Started software development journey**: Began exploring software engineering paradigms, mastering programming languages, data structures, OOP principles, and basic algorithm design.
@@ -41,7 +43,7 @@ const KNOWLEDGE_BASE = {
   contact: `You can reach out to Muhammad Hassaan through the following channels:
 - Email: hassanashfaq51@gmail.com
 - WhatsApp / Phone: +92 311 6647440 (wa.me/923116647440)
-- LinkedIn: linkedin.com/in/m-hassaan-57845508 (https://linkedin.com/in/m-hassaan-57845508)
+- LinkedIn: linkedin.com/in/m-hassaan-578455408 (https://www.linkedin.com/in/m-hassaan-578455408)
 - GitHub: github.com/hassaanashfaq51 (https://github.com/hassaanashfaq51)`,
   
   resume: `You can download Muhammad Hassaan's professional resume from this link: /assets/Muhammad_Hassaan_Resume.pdf`
@@ -111,7 +113,7 @@ const getLocalResponse = (message) => {
   });
 
   // Keywords for Projects
-  const projectsKeywords = ['project', 'u2 collective', 'hr portal', 'task manager', 'ecommerce', 'built', 'developed', 'deployed', 'work sample', 'portfolio project'];
+  const projectsKeywords = ['project', 'u2 collective', 'hr portal', 'mongodb', 'rest api', 'responsive frontend', 'built', 'developed', 'deployed', 'work sample', 'portfolio project'];
   projectsKeywords.forEach(kw => {
     if (cleanMsg.includes(kw)) scores.projects += 2;
   });

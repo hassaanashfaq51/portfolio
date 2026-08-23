@@ -120,6 +120,7 @@ const Hero = ({ onTabChange }) => {
               <img 
                 src="/assets/profile.jpg" 
                 alt="Muhammad Hassaan" 
+                decoding="async"
                 className="w-full h-full object-cover object-[center_12%] group-hover:scale-105 transition-transform duration-550"
               />
             </div>

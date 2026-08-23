@@ -172,7 +172,7 @@ Let's collaborate on your next digital solution!
 
 *   **📧 Email:** [hassanashfaq51@gmail.com](mailto:hassanashfaq51@gmail.com)
 *   **🐙 GitHub:** [github.com/hassaanashfaq51](https://github.com/hassaanashfaq51)
-*   **💼 LinkedIn:** [linkedin.com/in/m-hassaan-57845508](https://linkedin.com/in/m-hassaan-57845508)
+*   **💼 LinkedIn:** [linkedin.com/in/m-hassaan-578455408](https://www.linkedin.com/in/m-hassaan-578455408)
 *   **💬 WhatsApp:** [+92 311 6647440](https://wa.me/923116647440)
 
 ---

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { Sun, Moon, Menu, X, Terminal, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,12 +9,32 @@ const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatC
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef(null);
+
+  // Close mobile navigation menu on click outside
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
 
   const navItems = [
     { name: 'Home', value: 'home' },
     { name: 'About', value: 'about' },
     { name: 'Skills', value: 'skills' },
     { name: 'Projects', value: 'projects' },
+    { name: 'Blog', value: 'blog' },
     { name: 'Education', value: 'education' },
     { name: 'Experience', value: 'experience' },
     { name: 'Resume', value: 'resume' },
@@ -22,16 +42,23 @@ const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatC
   ];
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 20) {
+            setIsScrolled(true);
+          } else {
+            setIsScrolled(false);
+          }
 
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalScroll > 0) {
-        setScrollProgress((window.scrollY / totalScroll) * 100);
+          const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalScroll > 0) {
+            setScrollProgress((window.scrollY / totalScroll) * 100);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -46,7 +73,7 @@ const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatC
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-navbar shadow-md py-3' : 'bg-transparent py-5'}`}>
+    <nav ref={navRef} className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-navbar shadow-md py-3' : 'bg-transparent py-5'}`}>
       {/* Scroll Progress Bar */}
       <div 
         className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 transition-all duration-100"
@@ -155,7 +182,10 @@ const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatC
 
             {/* Admin Portal Toggle */}
             <button
-              onClick={onAdminClick}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onAdminClick();
+              }}
               className={`p-2 rounded-full border ${
                 isAdminLoggedIn 
                   ? 'border-green-500 text-green-500 bg-green-500/10' 
@@ -167,7 +197,10 @@ const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatC
 
             {/* AI Assistant Mobile Toggle */}
             <button
-              onClick={onChatClick}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onChatClick();
+              }}
               className="p-2 rounded-full glass-panel hover:bg-slate-200 dark:hover:bg-slate-800 text-indigo-500 dark:text-cyan-400 border border-indigo-500/10 dark:border-cyan-400/10"
               aria-label="AI Assistant"
             >

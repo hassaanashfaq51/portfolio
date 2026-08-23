@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Cursor from './components/Cursor';
-import AdminDashboard from './components/AdminDashboard';
-import ChatbotDrawer from './components/ChatbotDrawer';
+import ProjectDetailsModal from './components/ProjectDetailsModal';
 import Hero from './sections/Hero';
-import About from './sections/About';
-import Education from './sections/Education';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
+import Blog from './sections/Blog';
 import Inspiration from './sections/Inspiration';
-import Journey from './sections/Journey';
-import Github from './sections/Github';
-import Resume from './sections/Resume';
 import Contact from './sections/Contact';
 import { ThemeProvider } from './context/ThemeContext';
-import { ArrowUp, Terminal, Heart } from 'lucide-react';
+import { ArrowUp, Terminal, Heart, Loader } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sectionReveal } from './utils/animations';
+
+// Code split heavy overlays and sub-views to optimize mobile initial load time
+const AdminDashboard = React.lazy(() => import('./components/AdminDashboard'));
+const ChatbotDrawer = React.lazy(() => import('./components/ChatbotDrawer'));
+const About = React.lazy(() => import('./sections/About'));
+const Education = React.lazy(() => import('./sections/Education'));
+const Journey = React.lazy(() => import('./sections/Journey'));
+const Resume = React.lazy(() => import('./sections/Resume'));
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -27,13 +30,15 @@ function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedProjectDetails, setSelectedProjectDetails] = useState(null);
 
   const handleTabChange = (tabValue) => {
     setActiveTab(tabValue);
-    if (['home', 'about', 'education', 'experience', 'resume'].includes(tabValue)) {
+    if (['home', 'about', 'education', 'experience', 'resume', 'blog'].includes(tabValue)) {
       window.scrollTo({ top: 0, behavior: tabValue === 'home' ? 'smooth' : 'auto' });
     } else {
-      setTimeout(() => {
+      let retries = 0;
+      const scrollToElement = () => {
         const element = document.getElementById(tabValue);
         if (element) {
           const offset = 80;
@@ -45,8 +50,12 @@ function App() {
             top: offsetPosition,
             behavior: 'smooth'
           });
+        } else if (retries < 10) {
+          retries++;
+          setTimeout(scrollToElement, 50); // Retry in case React state/mount is rendering the DOM
         }
-      }, 100);
+      };
+      setTimeout(scrollToElement, 100);
     }
   };
 
@@ -72,8 +81,15 @@ function App() {
   useEffect(() => {
     fetchProjects();
 
+    let ticking = false;
     const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 400);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setShowBackToTop(window.scrollY > 400);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -107,6 +123,13 @@ function App() {
     }
   };
 
+  const LoadingSpinner = (
+    <div className="flex flex-col items-center justify-center py-20 text-slate-500">
+      <Loader size={36} className="animate-spin mb-4 text-indigo-500" />
+      <span className="text-sm font-medium">Loading content...</span>
+    </div>
+  );
+
   return (
     <ThemeProvider>
       <div className="min-h-screen relative overflow-hidden transition-colors duration-300 font-sans selection:bg-indigo-500/30 selection:text-indigo-900 dark:selection:text-cyan-200">
@@ -116,41 +139,51 @@ function App() {
 
         {/* Global Navigation */}
         <Navbar 
-          onAdminClick={() => setIsAdminOpen(true)} 
+          onAdminClick={() => {
+            setIsChatOpen(false);
+            setIsAdminOpen(true);
+          }} 
           isAdminLoggedIn={isAdminLoggedIn} 
           activeTab={activeTab}
           onTabChange={handleTabChange}
-          onChatClick={() => setIsChatOpen(true)}
+          onChatClick={() => {
+            setIsAdminOpen(false);
+            setIsChatOpen(true);
+          }}
         />
         
         {/* Core Layout Containers */}
-        <div className="w-full">
-          {['home', 'skills', 'projects', 'contact'].includes(activeTab) ? (
-            <>
-              <Hero onTabChange={handleTabChange} />
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Skills />
-                <Projects 
-                  projects={projects}
-                  loading={loading}
-                  error={error}
-                  isAdmin={isAdminLoggedIn}
-                  onEdit={() => setIsAdminOpen(true)} // Opens admin pane where full details are configured
-                  onDelete={handleDeleteProjectDirect}
-                />
-                <Inspiration />
-                <Contact />
+        <Suspense fallback={LoadingSpinner}>
+          <div className="w-full">
+            {['home', 'skills', 'projects', 'contact'].includes(activeTab) ? (
+              <>
+                <Hero onTabChange={handleTabChange} />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <Skills />
+                  <Projects 
+                    projects={projects}
+                    loading={loading}
+                    error={error}
+                    isAdmin={isAdminLoggedIn}
+                    onEdit={() => setIsAdminOpen(true)} // Opens admin pane where full details are configured
+                    onDelete={handleDeleteProjectDirect}
+                    onViewDetails={(proj) => setSelectedProjectDetails(proj)}
+                  />
+                  <Inspiration />
+                  <Contact />
+                </div>
+              </>
+            ) : (
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 min-h-[70vh]">
+                {activeTab === 'about' && <About />}
+                {activeTab === 'education' && <Education />}
+                {activeTab === 'experience' && <Journey />}
+                {activeTab === 'resume' && <Resume />}
+                {activeTab === 'blog' && <Blog />}
               </div>
-            </>
-          ) : (
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 min-h-[70vh]">
-              {activeTab === 'about' && <About />}
-              {activeTab === 'education' && <Education />}
-              {activeTab === 'experience' && <Journey />}
-              {activeTab === 'resume' && <Resume />}
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        </Suspense>
 
         {/* Global Footer */}
         <motion.footer 
@@ -170,13 +203,28 @@ function App() {
           </div>
         </motion.footer>
 
-        {/* Admin Dashboard Overlay Modal */}
-        <AdminDashboard
-          isOpen={isAdminOpen}
-          onClose={() => setIsAdminOpen(false)}
-          onAuthChange={setIsAdminLoggedIn}
-          projects={projects}
-          onRefreshProjects={fetchProjects}
+        <Suspense fallback={null}>
+          {/* Admin Dashboard Overlay Modal */}
+          <AdminDashboard
+            isOpen={isAdminOpen}
+            onClose={() => setIsAdminOpen(false)}
+            onAuthChange={setIsAdminLoggedIn}
+            projects={projects}
+            onRefreshProjects={fetchProjects}
+          />
+
+          {/* Chatbot Side Drawer Overlay */}
+          <ChatbotDrawer
+            isOpen={isChatOpen}
+            onClose={() => setIsChatOpen(false)}
+          />
+        </Suspense>
+
+        {/* Project Details Dossier Modal */}
+        <ProjectDetailsModal
+          isOpen={!!selectedProjectDetails}
+          project={selectedProjectDetails}
+          onClose={() => setSelectedProjectDetails(null)}
         />
 
         {/* Scroll To Top Button */}
@@ -211,12 +259,6 @@ function App() {
             </motion.button>
           )}
         </AnimatePresence>
-
-        {/* Chatbot Side Drawer Overlay */}
-        <ChatbotDrawer
-          isOpen={isChatOpen}
-          onClose={() => setIsChatOpen(false)}
-        />
 
       </div>
     </ThemeProvider>
