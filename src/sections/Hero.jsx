@@ -173,8 +173,8 @@ const Hero = ({ onTabChange }) => {
               variants={buttonHover}
               whileHover="hover"
               whileTap="tap"
-              href="/assets/Muhammad_Hassaan_Resume.pdf"
-              download="Muhammad_Hassaan_Resume.pdf"
+              href="/assets/Muhammad Hassaan.pdf"
+              download="Muhammad Hassaan.pdf"
               className="group flex items-center space-x-2 py-3 px-6 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 shadow-lg shadow-indigo-500/25 hover:shadow-cyan-500/25 cursor-pointer transition-colors"
             >
               <FileText size={16} />

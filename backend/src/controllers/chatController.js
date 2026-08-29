@@ -46,7 +46,7 @@ const KNOWLEDGE_BASE = {
 - LinkedIn: linkedin.com/in/m-hassaan-578455408 (https://www.linkedin.com/in/m-hassaan-578455408)
 - GitHub: github.com/hassaanashfaq51 (https://github.com/hassaanashfaq51)`,
   
-  resume: `You can download Muhammad Hassaan's professional resume from this link: /assets/Muhammad_Hassaan_Resume.pdf`
+  resume: `You can download Muhammad Hassaan's professional resume from this link: /assets/Muhammad Hassaan.pdf`
 };
 
 // Polite refusal response for out-of-scope questions

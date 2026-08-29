@@ -46,8 +46,8 @@ const Resume = () => {
               variants={buttonHover}
               whileHover="hover"
               whileTap="tap"
-              href="/assets/Muhammad_Hassaan_Resume.pdf"
-              download="Muhammad_Hassaan_Resume.pdf"
+              href="/assets/Muhammad Hassaan.pdf"
+              download="Muhammad Hassaan.pdf"
               className="group flex items-center space-x-2.5 py-4 px-8 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-lg shadow-indigo-500/20 hover:shadow-cyan-500/25 cursor-pointer transition-colors"
             >
               <Download size={18} className="group-hover:translate-y-0.5 transition-transform" />
