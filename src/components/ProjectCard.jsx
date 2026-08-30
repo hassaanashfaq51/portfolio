@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Trash2, Edit } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { buttonHover, projectCardHover, imageHover, tagHover, fadeUp } from '../utils/animations';
 
 const projectCardVariants = {
@@ -9,7 +9,7 @@ const projectCardVariants = {
   hover: projectCardHover.hover
 };
 
-const ProjectCard = ({ project, isAdmin, onEdit, onDelete, onViewDetails }) => {
+const ProjectCard = ({ project, onViewDetails }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   if (!project) return null;
   const { id, title, description, technologies, features, live_url, github_url, image_url } = project;
@@ -31,25 +31,7 @@ const ProjectCard = ({ project, isAdmin, onEdit, onDelete, onViewDetails }) => {
       whileHover="hover"
       className="glass-panel rounded-3xl overflow-hidden flex flex-col h-full relative group transition-colors duration-300"
     >
-      {/* Admin Actions */}
-      {isAdmin && (
-        <div className="absolute top-4 right-4 z-10 flex space-x-2">
-          <button 
-            onClick={() => onEdit(project)}
-            className="p-2.5 rounded-full bg-slate-900/80 text-white hover:bg-indigo-500 backdrop-blur-md transition-colors shadow-lg cursor-pointer"
-            title="Edit Project"
-          >
-            <Edit size={14} />
-          </button>
-          <button 
-            onClick={() => onDelete(id)}
-            className="p-2.5 rounded-full bg-slate-900/80 text-red-400 hover:bg-red-600 hover:text-white backdrop-blur-md transition-colors shadow-lg cursor-pointer"
-            title="Delete Project"
-          >
-            <Trash2 size={14} />
-          </button>
-        </div>
-      )}
+
 
       {/* Project Banner Image */}
       <div className="h-48 sm:h-52 w-full overflow-hidden relative bg-slate-200 dark:bg-slate-800">

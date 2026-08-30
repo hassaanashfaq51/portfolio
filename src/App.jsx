@@ -14,7 +14,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { sectionReveal } from './utils/animations';
 
 // Code split heavy overlays and sub-views to optimize mobile initial load time
-const AdminDashboard = React.lazy(() => import('./components/AdminDashboard'));
 const ChatbotDrawer = React.lazy(() => import('./components/ChatbotDrawer'));
 const About = React.lazy(() => import('./sections/About'));
 const Education = React.lazy(() => import('./sections/Education'));
@@ -25,8 +24,6 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -103,25 +100,7 @@ function App() {
     });
   };
 
-  const handleDeleteProjectDirect = async (id) => {
-    if (!window.confirm('Delete this project?')) return;
-    const token = localStorage.getItem('admin_token');
-    try {
-      const res = await fetch(`/api/projects/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      if (res.ok) {
-        fetchProjects();
-      } else {
-        alert('Failed to delete');
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
+
 
   const LoadingSpinner = (
     <div className="flex flex-col items-center justify-center py-20 text-slate-500">
@@ -139,15 +118,9 @@ function App() {
 
         {/* Global Navigation */}
         <Navbar 
-          onAdminClick={() => {
-            setIsChatOpen(false);
-            setIsAdminOpen(true);
-          }} 
-          isAdminLoggedIn={isAdminLoggedIn} 
           activeTab={activeTab}
           onTabChange={handleTabChange}
           onChatClick={() => {
-            setIsAdminOpen(false);
             setIsChatOpen(true);
           }}
         />
@@ -164,9 +137,6 @@ function App() {
                     projects={projects}
                     loading={loading}
                     error={error}
-                    isAdmin={isAdminLoggedIn}
-                    onEdit={() => setIsAdminOpen(true)} // Opens admin pane where full details are configured
-                    onDelete={handleDeleteProjectDirect}
                     onViewDetails={(proj) => setSelectedProjectDetails(proj)}
                   />
                   <Inspiration />
@@ -204,14 +174,7 @@ function App() {
         </motion.footer>
 
         <Suspense fallback={null}>
-          {/* Admin Dashboard Overlay Modal */}
-          <AdminDashboard
-            isOpen={isAdminOpen}
-            onClose={() => setIsAdminOpen(false)}
-            onAuthChange={setIsAdminLoggedIn}
-            projects={projects}
-            onRefreshProjects={fetchProjects}
-          />
+
 
           {/* Chatbot Side Drawer Overlay */}
           <ChatbotDrawer

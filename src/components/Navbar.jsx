@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Menu, X, Terminal, Bot } from 'lucide-react';
+import { Sun, Moon, Menu, X, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { buttonHover } from '../utils/animations';
 
-const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatClick }) => {
+const Navbar = ({ activeTab, onTabChange, onChatClick }) => {
   const { theme, toggleTheme } = useTheme();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -148,21 +148,7 @@ const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatC
               )}
             </motion.button>
 
-            {/* Admin Console Toggle */}
-            <motion.button
-              variants={buttonHover}
-              whileHover="hover"
-              whileTap="tap"
-              onClick={onAdminClick}
-              className={`p-2 rounded-full border flex items-center justify-center transition-all cursor-pointer ${
-                isAdminLoggedIn 
-                  ? 'border-green-500 text-green-500 bg-green-500/10' 
-                  : 'border-slate-300 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-indigo-500 hover:text-indigo-500'
-              }`}
-              title="Admin Panel"
-            >
-              <Terminal size={18} />
-            </motion.button>
+
           </div>
 
           {/* Mobile Menu Buttons */}
@@ -180,20 +166,7 @@ const Navbar = ({ onAdminClick, isAdminLoggedIn, activeTab, onTabChange, onChatC
               )}
             </button>
 
-            {/* Admin Portal Toggle */}
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onAdminClick();
-              }}
-              className={`p-2 rounded-full border ${
-                isAdminLoggedIn 
-                  ? 'border-green-500 text-green-500 bg-green-500/10' 
-                  : 'border-slate-300 dark:border-slate-800 text-slate-500 dark:text-slate-400'
-              }`}
-            >
-              <Terminal size={18} />
-            </button>
+
 
             {/* AI Assistant Mobile Toggle */}
             <button
