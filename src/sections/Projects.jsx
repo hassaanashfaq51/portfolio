@@ -9,7 +9,7 @@ const Projects = ({ projects, loading, error, isAdmin, onEdit, onDelete, onViewD
   const [filteredProjects, setFilteredProjects] = useState([]);
 
   // Filter Categories
-  const categories = ['All', 'React.js', 'Node.js', 'Supabase', 'Flutter'];
+  const categories = ['All', 'React.js', 'Node.js', 'Supabase'];
 
   useEffect(() => {
     if (!Array.isArray(projects)) {
