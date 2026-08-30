@@ -21,7 +21,7 @@ Click the button below to visit the live deployed website:
 ## 🚀 Live Links
 
 - **🔗 Live Portfolio URL:** [https://hassaan-portfolio-lyart.vercel.app](https://hassaan-portfolio-lyart.vercel.app)
-- **📄 Download Resume:** [Muhammad_Hassaan_Resume.pdf](file:///public/assets/Muhammad_Hassaan_Resume.pdf)
+- **📄 Download Resume:** [Muhammad_Hassaan_Resume.pdf](public/assets/Muhammad%20Hassaan.pdf)
 
 ---
 
