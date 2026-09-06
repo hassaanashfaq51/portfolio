@@ -34,6 +34,7 @@ const Navbar = ({ activeTab, onTabChange, onChatClick }) => {
     { name: 'About', value: 'about' },
     { name: 'Skills', value: 'skills' },
     { name: 'Projects', value: 'projects' },
+    { name: 'Certificates & LOR', value: 'certificates' },
     { name: 'Blog', value: 'blog' },
     { name: 'Education', value: 'education' },
     { name: 'Experience', value: 'experience' },
@@ -90,13 +91,13 @@ const Navbar = ({ activeTab, onTabChange, onChatClick }) => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2.5">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={`#${item.value}`}
                 onClick={(e) => handleNavClick(e, item.value)}
-                className={`relative px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors duration-200 cursor-pointer rounded-lg group ${
+                className={`relative px-2 xl:px-2.5 py-1.5 text-[11px] xl:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 cursor-pointer rounded-lg group ${
                   activeTab === item.value
                     ? 'text-indigo-600 dark:text-cyan-400'
                     : 'text-slate-600 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-cyan-400'
@@ -152,7 +153,7 @@ const Navbar = ({ activeTab, onTabChange, onChatClick }) => {
           </div>
 
           {/* Mobile Menu Buttons */}
-          <div className="md:hidden flex items-center space-x-3">
+          <div className="lg:hidden flex items-center space-x-3">
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -199,7 +200,7 @@ const Navbar = ({ activeTab, onTabChange, onChatClick }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="md:hidden glass-navbar w-full mt-3 border-t border-slate-200 dark:border-slate-800"
+            className="lg:hidden glass-navbar w-full mt-3 border-t border-slate-200 dark:border-slate-800"
           >
             <div className="px-4 py-3 space-y-2 flex flex-col">
               {navItems.map((item) => (

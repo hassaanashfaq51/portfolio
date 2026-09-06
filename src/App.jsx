@@ -5,6 +5,7 @@ import ProjectDetailsModal from './components/ProjectDetailsModal';
 import Hero from './sections/Hero';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
+import Certificates from './sections/Certificates';
 import Blog from './sections/Blog';
 import Inspiration from './sections/Inspiration';
 import Contact from './sections/Contact';
@@ -128,7 +129,7 @@ function App() {
         {/* Core Layout Containers */}
         <Suspense fallback={LoadingSpinner}>
           <div className="w-full">
-            {['home', 'skills', 'projects', 'contact'].includes(activeTab) ? (
+            {['home', 'skills', 'projects', 'certificates', 'contact'].includes(activeTab) ? (
               <>
                 <Hero onTabChange={handleTabChange} />
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,6 +140,7 @@ function App() {
                     error={error}
                     onViewDetails={(proj) => setSelectedProjectDetails(proj)}
                   />
+                  <Certificates />
                   <Inspiration />
                   <Contact />
                 </div>
