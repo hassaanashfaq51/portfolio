@@ -35,9 +35,6 @@ const ProjectCard = ({ project, onViewDetails }) => {
 
       {/* Project Banner Image */}
       <div className="h-48 sm:h-52 w-full overflow-hidden relative bg-slate-200 dark:bg-slate-800">
-        {!imageLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 animate-pulse" />
-        )}
         <motion.img 
           variants={imageHover}
           src={image_url || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'} 
@@ -46,8 +43,10 @@ const ProjectCard = ({ project, onViewDetails }) => {
           decoding="async"
           width="600"
           height="350"
-          onLoad={() => setImageLoaded(true)}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onError={(e) => {
+            e.target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80';
+          }}
+          className="w-full h-full object-cover transition-transform duration-300"
         />
         {/* Soft overlay appearing on hover */}
         <motion.div 
@@ -86,6 +85,20 @@ const ProjectCard = ({ project, onViewDetails }) => {
 
         {/* Action Link Buttons */}
         <div className="flex flex-wrap gap-2.5 mt-4 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
+          {live_url && (
+            <motion.a 
+              variants={buttonHover}
+              whileHover="hover"
+              whileTap="tap"
+              href={live_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15 cursor-pointer"
+            >
+              <ExternalLink size={13} />
+              <span>Live Demo</span>
+            </motion.a>
+          )}
           {github_url && (
             <motion.a 
               variants={buttonHover}
@@ -105,7 +118,11 @@ const ProjectCard = ({ project, onViewDetails }) => {
             whileHover="hover"
             whileTap="tap"
             onClick={() => onViewDetails(project)}
-            className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15 cursor-pointer"
+            className={`flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold cursor-pointer ${
+              live_url 
+                ? 'border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 bg-transparent hover:bg-slate-100/30' 
+                : 'text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15'
+            }`}
           >
             <span>View Details</span>
           </motion.button>

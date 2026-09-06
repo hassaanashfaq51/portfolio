@@ -1,25 +1,43 @@
-import { supabase, isSupabaseConfigured } from '../config/supabase.js';
-import { verifyAdmin } from '../utils/auth.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectsJsonPath = path.resolve(__dirname, '../../data/projects.json');
+
+const getLocalProjectsFallback = () => {
+  try {
+    if (fs.existsSync(projectsJsonPath)) {
+      const raw = fs.readFileSync(projectsJsonPath, 'utf8');
+      return JSON.parse(raw);
+    }
+  } catch (err) {
+    console.error('Failed to read local projects.json fallback:', err);
+  }
+  return [];
+};
 
 // 1. Get all projects
 export const getProjects = async (req, res) => {
   try {
-    if (!isSupabaseConfigured || !supabase) {
-      return res.status(500).json({ error: 'Supabase database is not configured' });
+    if (isSupabaseConfigured && supabase) {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (!error && Array.isArray(data) && data.length > 0) {
+        return res.json(data);
+      }
     }
 
-    const { data, error } = await supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      return res.status(500).json({ error: 'Failed to retrieve projects: ' + error.message });
-    }
-
-    res.json(data);
+    // Fallback to local data
+    const localProjects = getLocalProjectsFallback();
+    res.json(localProjects);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve projects: ' + error.message });
+    const localProjects = getLocalProjectsFallback();
+    res.json(localProjects);
   }
 };
 

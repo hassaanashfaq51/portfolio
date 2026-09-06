@@ -1,25 +1,17 @@
-[
+export const initialProjects = [
   {
-    "id": "proj-1",
-    "title": "U2 Collective HR Management Portal",
-    "description": "A centralized full-stack HR management platform designed to streamline employee management, attendance tracking, task management, performance reviews, documents, and other daily HR operations.",
-    "technologies": [
-      "React",
-      "Vite",
-      "JavaScript",
-      "HTML",
-      "CSS",
+    id: "proj-1",
+    title: "U2 Collective HR Management Portal",
+    description: "A centralized full-stack HR management platform designed to streamline employee management, attendance tracking, task management, performance reviews, documents, and other daily HR operations.",
+    technologies: [
+      "React.js",
       "Node.js",
-      "Express.js",
       "Supabase",
-      "PostgreSQL",
-      "Supabase Storage",
-      "JWT Authentication",
-      "Password Hashing",
-      "Role-Based Authorization",
-      "Protected Routes"
+      "JavaScript",
+      "Express.js",
+      "PostgreSQL"
     ],
-    "features": [
+    features: [
       "Role-based authentication and access control",
       "CEO/Admin and Employee dashboards",
       "Employee management",
@@ -32,23 +24,23 @@
       "Report generation and data export",
       "Restricted employee access to protect official company information"
     ],
-    "live_url": "https://u2-collective-portal-hqk8.vercel.app",
-    "github_url": "https://github.com/hassaanashfaq51/u2-collective-portal",
-    "image_url": "/assets/project-hrportal.webp",
-    "created_at": "2026-07-11T00:00:00.000Z"
+    live_url: "https://u2-collective-portal-hqk8.vercel.app",
+    github_url: "https://github.com/hassaanashfaq51/u2-collective-portal",
+    image_url: "/assets/project-hrportal.webp",
+    created_at: "2026-07-11T00:00:00.000Z"
   },
   {
-    "id": "proj-5",
-    "title": "TaskPilot — Modern Productivity Web App",
-    "description": "A modern and responsive task management application designed to help users organize tasks, manage priorities, track deadlines, and monitor progress through a clean interactive interface.",
-    "technologies": [
+    id: "proj-5",
+    title: "TaskPilot — Modern Productivity Web App",
+    description: "A modern and responsive task management application designed to help users organize tasks, manage priorities, track deadlines, and monitor progress through a clean interactive interface.",
+    technologies: [
       "HTML5",
       "CSS3",
       "JavaScript",
       "Local Storage",
       "Responsive Design"
     ],
-    "features": [
+    features: [
       "Create new tasks",
       "Edit existing tasks",
       "Delete tasks",
@@ -78,27 +70,23 @@
       "Smooth animations",
       "Polished user interactions"
     ],
-    "live_url": null,
-    "github_url": "https://github.com/hassaanashfaq51/Task-pilot",
-    "image_url": "/assets/project-taskpilot.webp",
-    "created_at": "2026-07-10T12:00:00.000Z"
+    live_url: null,
+    github_url: "https://github.com/hassaanashfaq51/Task-pilot",
+    image_url: "/assets/project-taskpilot.webp",
+    created_at: "2026-07-10T12:00:00.000Z"
   },
   {
-    "id": "proj-2",
-    "title": "User Management API — MongoDB Integration",
-    "description": "A database-integrated RESTful API for managing users with MongoDB, Mongoose, schema validation, persistent storage, and complete CRUD operations.",
-    "technologies": [
+    id: "proj-2",
+    title: "User Management API — MongoDB Integration",
+    description: "A database-integrated RESTful API for managing users with MongoDB, Mongoose, schema validation, persistent storage, and complete CRUD operations.",
+    technologies: [
       "Node.js",
       "Express.js",
       "MongoDB",
-      "MongoDB Atlas",
-      "Mongoose",
-      "dotenv",
-      "CORS",
       "REST API",
       "Postman"
     ],
-    "features": [
+    features: [
       "MongoDB Atlas database integration",
       "Mongoose schema design",
       "Persistent cloud database storage",
@@ -119,23 +107,23 @@
       "RESTful API architecture",
       "API testing with Postman"
     ],
-    "live_url": null,
-    "github_url": "https://github.com/hassaanashfaq51/decodelab-task3",
-    "image_url": "/assets/project-mongodb.webp",
-    "created_at": "2026-07-10T00:00:00.000Z"
+    live_url: null,
+    github_url: "https://github.com/hassaanashfaq51/decodelab-task3",
+    image_url: "/assets/project-mongodb.webp",
+    created_at: "2026-07-10T00:00:00.000Z"
   },
   {
-    "id": "proj-3",
-    "title": "RESTful Backend API",
-    "description": "A structured backend API built with Node.js and Express.js, demonstrating RESTful routing, request handling, middleware, and backend development fundamentals.",
-    "technologies": [
+    id: "proj-3",
+    title: "RESTful Backend API",
+    description: "A structured backend API built with Node.js and Express.js, demonstrating RESTful routing, request handling, middleware, and backend development fundamentals.",
+    technologies: [
       "Node.js",
       "Express.js",
       "JavaScript",
       "REST API",
       "Postman"
     ],
-    "features": [
+    features: [
       "RESTful API architecture",
       "Structured API routes",
       "HTTP request handling",
@@ -146,23 +134,23 @@
       "Error handling",
       "API testing with Postman"
     ],
-    "live_url": null,
-    "github_url": "https://github.com/hassaanashfaq51/decodelab-task2",
-    "image_url": "/assets/project-backend.webp",
-    "created_at": "2026-07-09T00:00:00.000Z"
+    live_url: null,
+    github_url: "https://github.com/hassaanashfaq51/decodelab-task2",
+    image_url: "/assets/project-backend.webp",
+    created_at: "2026-07-09T00:00:00.000Z"
   },
   {
-    "id": "proj-4",
-    "title": "Responsive Frontend Interface",
-    "description": "A responsive and mobile-first frontend interface focused on clean layouts, modern styling, and a smooth user experience across different screen sizes.",
-    "technologies": [
+    id: "proj-4",
+    title: "Responsive Frontend Interface",
+    description: "A responsive and mobile-first frontend interface focused on clean layouts, modern styling, and a smooth user experience across different screen sizes.",
+    technologies: [
       "HTML5",
       "CSS3",
+      "JavaScript (Vanilla)",
       "CSS Grid",
-      "Responsive Design",
-      "Mobile-First Design"
+      "Responsive Design"
     ],
-    "features": [
+    features: [
       "Responsive layout",
       "Mobile-first approach",
       "Structured HTML5 markup",
@@ -172,9 +160,11 @@
       "Clean user interface",
       "Organized and maintainable frontend structure"
     ],
-    "live_url": null,
-    "github_url": "https://github.com/hassaanashfaq51/decodelab-task1",
-    "image_url": "/assets/project-frontend.webp",
-    "created_at": "2026-07-08T00:00:00.000Z"
+    live_url: null,
+    github_url: "https://github.com/hassaanashfaq51/decodelab-task1",
+    image_url: "/assets/project-frontend.webp",
+    created_at: "2026-07-08T00:00:00.000Z"
   }
-]
+];
+
+export default initialProjects;

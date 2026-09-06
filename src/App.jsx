@@ -21,9 +21,11 @@ const Education = React.lazy(() => import('./sections/Education'));
 const Journey = React.lazy(() => import('./sections/Journey'));
 const Resume = React.lazy(() => import('./sections/Resume'));
 
+import { initialProjects } from './data/projectsData';
+
 function App() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState(initialProjects);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
@@ -58,19 +60,16 @@ function App() {
   };
 
   const fetchProjects = async () => {
-    setLoading(true);
-    setError('');
     try {
       const res = await fetch('/api/projects');
-      const data = await res.json();
       if (res.ok) {
-        setProjects(data);
-      } else {
-        setError(data.error || 'Failed to fetch projects');
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setProjects(data);
+        }
       }
     } catch (err) {
-      console.error(err);
-      setError('Failed to connect to portfolio API server.');
+      console.warn('Portfolio API unreachable, retaining initial projects:', err);
     } finally {
       setLoading(false);
     }

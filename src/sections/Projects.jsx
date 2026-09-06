@@ -19,12 +19,19 @@ const Projects = ({ projects, loading, error, onViewDetails }) => {
     if (filter === 'All') {
       setFilteredProjects(projects);
     } else {
+      const normalize = (str) => String(str).toLowerCase().replace(/[\.\s_-]/g, '').replace(/js$/, '');
+      const targetFilter = normalize(filter);
+
       const filtered = projects.filter(proj => {
         if (!proj) return false;
         const techList = Array.isArray(proj.technologies) 
           ? proj.technologies 
           : (typeof proj.technologies === 'string' ? proj.technologies.split(',').map(t => t.trim()) : []);
-        return techList.some(tech => tech && typeof tech === 'string' && tech.toLowerCase() === filter.toLowerCase());
+        return techList.some(tech => {
+          if (!tech) return false;
+          const techNorm = normalize(tech);
+          return techNorm === targetFilter || techNorm.includes(targetFilter) || targetFilter.includes(techNorm);
+        });
       });
       setFilteredProjects(filtered);
     }
@@ -36,7 +43,7 @@ const Projects = ({ projects, loading, error, onViewDetails }) => {
       variants={sectionReveal}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.05 }}
       className="py-20 relative bg-transparent border-t border-slate-200/20 dark:border-slate-800/10"
     >
       {/* Background decoration */}
