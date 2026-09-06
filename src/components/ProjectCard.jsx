@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { buttonHover, projectCardHover, imageHover, tagHover, fadeUp } from '../utils/animations';
 
 const projectCardVariants = {
@@ -85,20 +85,6 @@ const ProjectCard = ({ project, onViewDetails }) => {
 
         {/* Action Link Buttons */}
         <div className="flex flex-wrap gap-2.5 mt-4 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
-          {live_url && (
-            <motion.a 
-              variants={buttonHover}
-              whileHover="hover"
-              whileTap="tap"
-              href={live_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15 cursor-pointer"
-            >
-              <ExternalLink size={13} />
-              <span>Live Demo</span>
-            </motion.a>
-          )}
           {github_url && (
             <motion.a 
               variants={buttonHover}
@@ -118,11 +104,7 @@ const ProjectCard = ({ project, onViewDetails }) => {
             whileHover="hover"
             whileTap="tap"
             onClick={() => onViewDetails(project)}
-            className={`flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold cursor-pointer ${
-              live_url 
-                ? 'border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 bg-transparent hover:bg-slate-100/30' 
-                : 'text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15'
-            }`}
+            className="flex-grow flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15 cursor-pointer"
           >
             <span>View Details</span>
           </motion.button>

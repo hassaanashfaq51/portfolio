@@ -4,20 +4,10 @@
     "title": "U2 Collective HR Management Portal",
     "description": "A centralized full-stack HR management platform designed to streamline employee management, attendance tracking, task management, performance reviews, documents, and other daily HR operations.",
     "technologies": [
-      "React",
-      "Vite",
-      "JavaScript",
-      "HTML",
-      "CSS",
+      "React.js",
       "Node.js",
       "Express.js",
-      "Supabase",
-      "PostgreSQL",
-      "Supabase Storage",
-      "JWT Authentication",
-      "Password Hashing",
-      "Role-Based Authorization",
-      "Protected Routes"
+      "Supabase"
     ],
     "features": [
       "Role-based authentication and access control",
@@ -32,7 +22,7 @@
       "Report generation and data export",
       "Restricted employee access to protect official company information"
     ],
-    "live_url": "https://u2-collective-portal-hqk8.vercel.app",
+    "live_url": null,
     "github_url": "https://github.com/hassaanashfaq51/u2-collective-portal",
     "image_url": "/assets/project-hrportal.webp",
     "created_at": "2026-07-11T00:00:00.000Z"

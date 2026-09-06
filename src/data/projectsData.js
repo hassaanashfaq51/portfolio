@@ -6,10 +6,8 @@ export const initialProjects = [
     technologies: [
       "React.js",
       "Node.js",
-      "Supabase",
-      "JavaScript",
       "Express.js",
-      "PostgreSQL"
+      "Supabase"
     ],
     features: [
       "Role-based authentication and access control",
@@ -24,7 +22,7 @@ export const initialProjects = [
       "Report generation and data export",
       "Restricted employee access to protect official company information"
     ],
-    live_url: "https://u2-collective-portal-hqk8.vercel.app",
+    live_url: null,
     github_url: "https://github.com/hassaanashfaq51/u2-collective-portal",
     image_url: "/assets/project-hrportal.webp",
     created_at: "2026-07-11T00:00:00.000Z"
