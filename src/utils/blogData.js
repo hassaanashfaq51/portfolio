@@ -1,10 +1,253 @@
 export const blogArticles = [
   {
+    id: "suroor-music-streaming",
+    title: "Building SUROOR — A Modern Music Streaming Platform",
+    category: "Full-Stack Development",
+    readTime: "7 min read",
+    description: "Exploring the development of SUROOR, a modern music streaming platform focused on smooth playback, organized music discovery, and a premium user experience.",
+    image: "/assets/blog-suroor.webp",
+    tags: ["React.js", "Vite", "JavaScript", "HTML5", "CSS", "Supabase", "PostgreSQL", "HTML5 Audio API"],
+    content: [
+      {
+        type: "heading",
+        text: "Project Idea & Architectural Overview"
+      },
+      {
+        type: "paragraph",
+        text: "SUROOR is a modern music streaming web application built to provide listeners with a fluid, distraction-free audio experience through a clean and responsive interface. The application focuses on intuitive music discovery, uninterrupted audio playback, organized media libraries, and seamless user interaction while showcasing modern frontend architecture paired with serverless cloud infrastructure."
+      },
+      {
+        type: "paragraph",
+        text: "The vision behind SUROOR was to combine high-fidelity web design with a performant audio streaming engine, allowing users to effortlessly explore curated catalogs, manage personal listening queues, and persist their music preferences across sessions."
+      },
+      {
+        type: "heading",
+        text: "UI/UX Design & Aesthetic Approach"
+      },
+      {
+        type: "paragraph",
+        text: "Music platforms require an interface that stays unobtrusive while keeping essential playback controls always accessible. SUROOR features an ergonomic layout with persistent bottom-docked audio controls, smooth micro-interactions, dark aesthetic styling, and responsive navigation sidebars. The visual hierarchy ensures cover art, track titles, artist details, and playlists take center stage without visual clutter."
+      },
+      {
+        type: "heading",
+        text: "Music Discovery, Categories & Search"
+      },
+      {
+        type: "paragraph",
+        text: "Discovering music on SUROOR is organized through distinct category collections, including Pakistani, Indian, and international music tracks. Users can browse curated genres, discover trending songs, and locate specific artists or titles using an instant search filter that dynamically updates the media grid as characters are typed."
+      },
+      {
+        type: "heading",
+        text: "Audio Playback Engine & HTML5 Audio API"
+      },
+      {
+        type: "paragraph",
+        text: "At the core of SUROOR is a centralized audio controller powered by the native HTML5 Audio API. The engine manages audio streams, queue progressions, volume levels, mute toggles, seeking, and real-time playback duration calculations. To ensure uninterrupted listening, state management coordinates track changes without causing layout re-renders or audio stuttering."
+      },
+      {
+        type: "code",
+        language: "javascript",
+        code: `// Audio playback controller snippet
+const playTrack = (track) => {
+  if (audioRef.current) {
+    audioRef.current.src = track.audioUrl;
+    audioRef.current.play()
+      .then(() => {
+        setCurrentTrack(track);
+        setIsPlaying(true);
+        updateRecentlyPlayed(track);
+      })
+      .catch((err) => console.error("Playback error:", err));
+  }
+};`
+      },
+      {
+        type: "heading",
+        text: "Playlists, Favorites & Recently Played"
+      },
+      {
+        type: "paragraph",
+        text: "SUROOR provides rich personal library management features, enabling authenticated listeners to:"
+      },
+      {
+        type: "list",
+        items: [
+          "Create and organize custom playlists with persistent ordering",
+          "Mark tracks as favorites with instant one-click heart toggling",
+          "Access an automatically updated 'Recently Played' listening history",
+          "Seamlessly queue up albums or playlists for continuous sequential playback"
+        ]
+      },
+      {
+        type: "heading",
+        text: "Supabase Backend & PostgreSQL Integration"
+      },
+      {
+        type: "paragraph",
+        text: "For backend persistence and authentication, SUROOR leverages Supabase connected to a managed PostgreSQL database. Relational schemas store track metadata, artist relationships, user profiles, playlist associations, and favorited songs. User authentication ensures listeners can sign up, log in securely, and retrieve their tailored library on any device."
+      },
+      {
+        type: "heading",
+        text: "Responsive Design & Performance Considerations"
+      },
+      {
+        type: "paragraph",
+        text: "Because listening happens on mobile phones, tablets, and laptops alike, SUROOR adapts responsively across screen dimensions. Media queries and flexible grid layouts ensure the audio player collapses into an ergonomic mobile bar on handheld screens while expanding into a full control suite on desktop monitors. Asset compression and lazy loading of album artwork maintain rapid initial load times."
+      },
+      {
+        type: "heading",
+        text: "Development Challenges & Key Takeaways"
+      },
+      {
+        type: "list",
+        items: [
+          "Coordinating asynchronous audio loading states with UI playback controls required defensive error handling to prevent browser autoplay blocks.",
+          "Designing relational database schemas for user-generated playlists in PostgreSQL improved overall query efficiency and data integrity.",
+          "Building a production audio player deepened my understanding of browser media events, streaming buffering states, and performant state synchronization."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Technology Stack"
+      },
+      {
+        type: "list",
+        items: [
+          "Frontend Framework: React.js & Vite",
+          "Languages: JavaScript (ES6+), HTML5, CSS",
+          "Audio API: HTML5 Audio API",
+          "Backend & Database: Supabase & PostgreSQL"
+        ]
+      },
+      {
+        type: "link",
+        text: "View SUROOR Repository on GitHub",
+        url: "https://github.com/hassaanashfaq51/Music-Player"
+      }
+    ]
+  },
+  {
+    id: "visionix-social-platform",
+    title: "Building VISIONIX — A Modern Social Networking Platform",
+    category: "Full-Stack Development",
+    readTime: "7 min read",
+    description: "Exploring the development of VISIONIX, a modern social networking platform focused on connections, content sharing, real-time interactions, and privacy.",
+    image: "/assets/blog-visionix.webp",
+    tags: ["React.js", "JavaScript", "HTML5", "CSS", "Supabase", "PostgreSQL", "Supabase Realtime", "Supabase Storage"],
+    content: [
+      {
+        type: "heading",
+        text: "Project Idea & Architecture"
+      },
+      {
+        type: "paragraph",
+        text: "VISIONIX is a full-stack social networking platform engineered around meaningful human connections, dynamic content sharing, and real-time social discovery. Built with a modern responsive interface, the application allows users to establish personal profiles, publish rich multimedia posts, connect with friends, and interact in real time without page refreshes."
+      },
+      {
+        type: "paragraph",
+        text: "The architectural design pairs a responsive React frontend with a Supabase PostgreSQL backend, harnessing Supabase Realtime for instant event broadcasting and Supabase Storage for reliable media handling."
+      },
+      {
+        type: "heading",
+        text: "UI/UX Design & User Experience"
+      },
+      {
+        type: "paragraph",
+        text: "Social networking platforms thrive on clean layouts and clear interaction pathways. VISIONIX uses a three-column desktop structure featuring quick navigation on the left, an interactive social activity feed in the center, and connection requests and activity updates on the right. On mobile devices, the interface elegantly collapses into a focused single-column view with bottom navigation."
+      },
+      {
+        type: "heading",
+        text: "User Authentication & Profiles"
+      },
+      {
+        type: "paragraph",
+        text: "Security and identity are fundamental. VISIONIX includes full user registration and authentication workflows with session persistence. Users can customize their personal profiles with avatars, bios, and account details, establishing an authentic digital presence across the platform."
+      },
+      {
+        type: "heading",
+        text: "Creating Posts, Likes & Comments"
+      },
+      {
+        type: "paragraph",
+        text: "Content creation in VISIONIX is straightforward and expressive. Users can compose text updates, attach multimedia assets, and broadcast their thoughts to their network. Posts support engagement features including instant likes, like counters, and nested comment threads allowing multi-participant discussions."
+      },
+      {
+        type: "code",
+        language: "javascript",
+        code: `// Realtime subscription setup in VISIONIX
+const channel = supabase
+  .channel('public:posts')
+  .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'posts' }, 
+    (payload) => {
+      setPosts((prevPosts) => [payload.new, ...prevPosts]);
+    }
+  )
+  .subscribe();`
+      },
+      {
+        type: "heading",
+        text: "Friend Requests & Social Connections"
+      },
+      {
+        type: "paragraph",
+        text: "The social graph in VISIONIX is driven by a bidirectional friendship workflow. Users can discover other community members, send friend requests, accept or decline incoming requests, and manage their active social circle. Relationship states are enforced at the database level to ensure accurate connection lists."
+      },
+      {
+        type: "heading",
+        text: "Real-Time Interactions & Notifications"
+      },
+      {
+        type: "paragraph",
+        text: "To create an engaging experience, VISIONIX utilizes Supabase Realtime via WebSockets. When a user receives a friend request, post like, or new comment, instant notification badges trigger across client sessions in real time, keeping users constantly updated with ongoing platform activity."
+      },
+      {
+        type: "heading",
+        text: "Multimedia Storage & Privacy Controls"
+      },
+      {
+        type: "paragraph",
+        text: "Multimedia sharing is powered by Supabase Storage buckets, allowing reliable image uploads with optimized delivery. To safeguard user autonomy, VISIONIX implements privacy controls that allow authors to govern post visibility and profile access, supported by PostgreSQL Row Level Security (RLS) policies."
+      },
+      {
+        type: "heading",
+        text: "Development Challenges & Key Lessons"
+      },
+      {
+        type: "list",
+        items: [
+          "Managing WebSocket subscriptions cleanly across React component lifecycles to prevent memory leaks and duplicate notifications.",
+          "Designing efficient relational database models for bidirectional friendships, likes, and comment trees in PostgreSQL.",
+          "Mastering cloud media uploads and URL signing with Supabase Storage for secure asset distribution."
+        ]
+      },
+      {
+        type: "heading",
+        text: "Technology Stack"
+      },
+      {
+        type: "list",
+        items: [
+          "Frontend Framework: React.js",
+          "Languages: JavaScript (ES6+), HTML5, CSS",
+          "Backend & Cloud Database: Supabase & PostgreSQL",
+          "Real-Time Engine: Supabase Realtime",
+          "Media Storage: Supabase Storage"
+        ]
+      },
+      {
+        type: "link",
+        text: "View VISIONIX Repository on GitHub",
+        url: "https://github.com/hassaanashfaq51/visionix"
+      }
+    ]
+  },
+  {
     id: "responsive-frontend",
     title: "Building a Responsive Frontend Interface with HTML5 & CSS3",
     category: "Frontend Development",
     readTime: "5 min read",
     description: "Exploring the process of building a responsive, mobile-first frontend interface using modern HTML5 and CSS3 techniques, with a focus on clean structure, responsive layouts, usability, and polished visual presentation.",
+    image: "/assets/project-frontend.webp",
     tags: ["HTML5", "CSS3", "CSS Grid", "Responsive Design", "Mobile-First Design"],
     content: [
       {
@@ -96,6 +339,7 @@ export const blogArticles = [
     category: "Backend Development",
     readTime: "6 min read",
     description: "Exploring the development of a modular RESTful backend API using Node.js and Express.js, including structured API routes, request handling, CRUD-oriented architecture, validation, centralized error handling, and API testing.",
+    image: "/assets/project-backend.webp",
     tags: ["Node.js", "Express.js", "REST API", "JavaScript", "Postman"],
     content: [
       {
@@ -192,6 +436,7 @@ app.use((err, req, res, next) => {
     category: "Backend & Database",
     readTime: "7 min read",
     description: "Exploring the development of a database-integrated User Management API using Node.js, Express.js, MongoDB, and Mongoose for persistent data storage, schema validation, and complete CRUD operations.",
+    image: "/assets/project-mongodb.webp",
     tags: ["Node.js", "Express.js", "MongoDB", "MongoDB Atlas", "Mongoose", "REST API", "Postman"],
     content: [
       {
@@ -307,6 +552,7 @@ module.exports = mongoose.model('User', userSchema);`
     category: "Web Development",
     readTime: "8 min read",
     description: "Building a modern productivity-focused To-Do List application designed to help users organize tasks, manage priorities, track deadlines, and stay productive through a clean and responsive interface.",
+    image: "/assets/project-taskpilot.webp",
     tags: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Responsive Design"],
     content: [
       {
@@ -403,6 +649,7 @@ function loadTasks() {
     category: "FULL STACK DEVELOPMENT",
     readTime: "6 min read",
     description: "Exploring the development of a modern HR management portal designed to simplify employee management, attendance tracking, leave management, performance monitoring, and document handling through a centralized interface.",
+    image: "/assets/project-hrportal.webp",
     tags: ["React", "Node.js", "Express.js", "Supabase", "PostgreSQL"],
     content: [
       {

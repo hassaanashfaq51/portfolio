@@ -38,7 +38,7 @@ const ProjectCard = ({ project, onViewDetails }) => {
         <motion.img 
           variants={imageHover}
           src={image_url || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'} 
-          alt={title} 
+          alt={project.alt_text || title} 
           loading="lazy"
           decoding="async"
           width="600"

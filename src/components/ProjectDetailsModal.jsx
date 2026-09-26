@@ -3,6 +3,67 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Github, Cpu, Briefcase, Award, Sparkles, CheckCircle2, Workflow } from 'lucide-react';
 
 const PROJECT_DETAILS_MAP = {
+  'proj-suroor': {
+    role: 'Full Stack Developer',
+    fullDescription: 'SUROOR is a modern music streaming web application designed to provide users with a smooth and engaging listening experience through a clean, premium interface.\n\nThe platform allows users to discover and listen to music, search for tracks, explore different categories, manage playlists, save favorite tracks, and access recently played music.\n\nThe project also demonstrates user authentication, profile functionality, Supabase backend integration, database management, data persistence, and responsive frontend development.',
+    fullTechStack: [
+      'React.js',
+      'Vite',
+      'JavaScript',
+      'HTML5',
+      'CSS',
+      'Supabase',
+      'PostgreSQL',
+      'HTML5 Audio API'
+    ],
+    highlights: [
+      'Continuous audio playback engine with responsive player controls',
+      'Live search across library, artists, and tracks',
+      'Multi-genre exploration including Pakistani, Indian, and International categories',
+      'Playlist creation and management with persistent storage',
+      'Favorite tracks and recently played tracking',
+      'User authentication and profile management via Supabase',
+      'Responsive design and premium UI/UX'
+    ],
+    howItWorks: [
+      'Users explore music catalogs filtered by categories such as Pakistani, Indian, Classical, and Ambient.',
+      'The audio engine manages continuous playback, queueing, track progress, and volume controls via the HTML5 Audio API.',
+      'Authenticated users can create custom playlists, like songs, and track their listening history.',
+      'All playlist configurations, favorite songs, and profile details persist securely in Supabase PostgreSQL.'
+    ],
+    whatLearned: 'SUROOR demonstrates full-stack web application development, audio streaming architecture, HTML5 Audio API integration, relational database modeling with Supabase PostgreSQL, and building responsive, accessible interfaces for media discovery.',
+    outcome: 'A polished, feature-complete music streaming platform showcasing modern React state management, audio playback architecture, real-time database persistence, and clean UI/UX design.'
+  },
+  'proj-visionix': {
+    role: 'Full Stack Developer',
+    fullDescription: 'VISIONIX is a full-stack social networking platform designed around connecting users, sharing content, and discovering new connections through a modern and responsive interface.\n\nUsers can create profiles, publish posts, interact with content through likes and comments, send and manage friend requests, receive notifications, and manage their social connections.\n\nThe project also demonstrates real-time functionality using Supabase Realtime, multimedia content support, privacy controls, database management, authentication, and secure data handling.',
+    fullTechStack: [
+      'React.js',
+      'JavaScript',
+      'HTML5',
+      'CSS',
+      'Supabase',
+      'PostgreSQL',
+      'Supabase Realtime',
+      'Supabase Storage'
+    ],
+    highlights: [
+      'Full social networking feed with posts, likes, and nested comments',
+      'Bidirectional friendship workflows with friend requests and connection management',
+      'Real-time notifications and feed synchronization via Supabase Realtime',
+      'Multimedia uploads with cloud storage integration',
+      'Granular post privacy controls (Public, Friends, Only Me)',
+      'Responsive design with dark and light aesthetic support'
+    ],
+    howItWorks: [
+      'Users register and create personalized profiles with bios and profile pictures.',
+      'Users publish posts with text, images, or media, configuring custom privacy levels.',
+      'Friends connect through bidirectional requests, interact with posts via likes and comments, and view real-time feed updates.',
+      'Supabase Realtime powers instant notification delivery and active social updates across client sessions.'
+    ],
+    whatLearned: 'VISIONIX demonstrates practical expertise in architecting full-stack social platforms, real-time synchronization with Supabase Realtime, cloud media storage pipelines, granular privacy permission enforcement, and building responsive, interactive web applications.',
+    outcome: 'A full-stack, real-time social networking web platform demonstrating modern authentication, database architecture, real-time updates, storage management, and high-performance UI engineering.'
+  },
   'proj-1': {
     role: 'Full Stack Developer',
     fullDescription: 'U2 Collective HR Management Portal is a full-stack web-based Human Resource Management System designed to centralize employee management and daily HR operations in one secure platform.\n\nThe system includes two main user roles: CEO/Admin and Employee. The CEO/Admin manages employees and HR operations, while employees have restricted access based on their role and permissions.',
@@ -117,9 +178,11 @@ const ProjectDetailsModal = ({ isOpen, project, onClose }) => {
     outcome: 'Demonstrates modern software development best practices, modular structures, and responsive user interfaces.'
   };
 
-  const techList = Array.isArray(technologies) 
-    ? technologies 
-    : (typeof technologies === 'string' ? technologies.split(',').map(t => t.trim()) : []);
+  const techList = (detailedInfo.fullTechStack && Array.isArray(detailedInfo.fullTechStack))
+    ? detailedInfo.fullTechStack
+    : (Array.isArray(technologies) 
+      ? technologies 
+      : (typeof technologies === 'string' ? technologies.split(',').map(t => t.trim()) : []));
 
   const featList = Array.isArray(features) 
     ? features 
@@ -195,7 +258,7 @@ const ProjectDetailsModal = ({ isOpen, project, onClose }) => {
               <div className="h-56 sm:h-72 w-full relative overflow-hidden bg-slate-100 dark:bg-slate-950">
                 <img 
                   src={image_url || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'} 
-                  alt={title} 
+                  alt={displayProject.alt_text || title} 
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent pointer-events-none" />
@@ -227,7 +290,7 @@ const ProjectDetailsModal = ({ isOpen, project, onClose }) => {
                 <div className="space-y-3">
                   <h5 className="flex items-center text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                     <Cpu size={14} className="mr-2 text-indigo-500" />
-                    Technologies Applied
+                    Full Technology Stack
                   </h5>
                   <div className="flex flex-wrap gap-2">
                     {techList.map((tech, index) => (

@@ -171,11 +171,25 @@ const Blog = () => {
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedArticle(null)}
-                  className="absolute top-4 right-4 p-2.5 rounded-full bg-slate-200/40 hover:bg-slate-200/80 dark:bg-slate-800/40 dark:hover:bg-slate-800/80 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-all border border-slate-200/35 dark:border-slate-700/35 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                  className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white backdrop-blur-md transition-all border border-white/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                   aria-label="Close article"
                 >
                   <X size={18} />
                 </button>
+
+                {/* Cover Image Banner */}
+                {selectedArticle.image && (
+                  <div className="h-52 sm:h-72 -mx-6 -mt-6 sm:-mx-8 sm:-mt-8 md:-mx-10 md:-mt-10 mb-6 relative overflow-hidden rounded-t-3xl bg-slate-100 dark:bg-slate-950">
+                    <img 
+                      src={selectedArticle.image} 
+                      alt={selectedArticle.title} 
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+                  </div>
+                )}
 
                 {/* Modal Content Headers */}
                 <div className="mb-6">
@@ -260,6 +274,21 @@ const Blog = () => {
                           <pre className="p-4 sm:p-5 bg-slate-950 text-slate-100 font-mono text-[12px] sm:text-sm overflow-x-auto leading-relaxed scrollbar">
                             <code>{block.code}</code>
                           </pre>
+                        </div>
+                      );
+                    }
+                    if (block.type === 'link') {
+                      return (
+                        <div key={index} className="pt-2 pb-2">
+                          <a 
+                            href={block.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-95 shadow-md shadow-indigo-500/15 cursor-pointer transition-all"
+                          >
+                            <span>{block.text || 'View on GitHub'}</span>
+                            <ArrowRight size={13} />
+                          </a>
                         </div>
                       );
                     }
